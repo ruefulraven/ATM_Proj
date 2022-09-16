@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class MainClass {
 
-	public static void main(String[] args) {
+	static Scanner scanner = new Scanner(System.in);
+	
+	public static void main(String[] args) throws Exception {
 		//dynamic - manghihingi ng input kay User
 		//using switch, execute yung methods depende sa pipiliin ng user
 		int userPin;
-		Scanner scanner = new Scanner(System.in);
-		
 		System.out.println("Enter your pin: ");
 		userPin = scanner.nextInt();
 		Atm atm = new Atm(userPin);
@@ -22,16 +22,31 @@ public class MainClass {
 		}else {
 			System.out.println("Sorry youre pin is invalid");
 		}
-		
 		scanner.close();
 	}
 	
-	public static void atmFunctionalities(int userInput, Atm tempAtm) {
+	public static void atmFunctionalities(int userInput, Atm tempAtm) throws Exception {
 		switch(userInput) {
 			case 1:
-				tempAtm.depositMoney(userInput);
+				System.out.println("How much money you want to deposit");
+				int moneyToDeposit = scanner.nextInt();
+				tempAtm.depositMoney(moneyToDeposit);
 				System.out.println("Youre current money is: ");
 				tempAtm.printReceipt();
+				break;
+			case 2:
+				System.out.println("How much money you want to deposit");
+				int moneyToWithdraw = scanner.nextInt();
+				tempAtm.withdrawMoney(moneyToWithdraw);
+				System.out.println("Youre current money is: ");
+				tempAtm.printReceipt();
+				break;
+			case 3:
+				System.out.println("Youre current money is: ");
+				tempAtm.printReceipt();
+				break;
+			case 4:
+				System.out.println("Bye Bye ");
 				break;
 		}
 		
